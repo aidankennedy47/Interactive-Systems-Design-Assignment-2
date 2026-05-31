@@ -1,6 +1,11 @@
 import React from "react";
 
-export default function SidebarButton()
+export default function SidebarButton({image, text, bottomButton})
 {
-
+    return (
+        <div className="sidebarButton" id={bottomButton}>
+            <img src={image} class="sidebarButtonImage"/>
+            <label>{text}</label>
+        </div>
+    )
 }
