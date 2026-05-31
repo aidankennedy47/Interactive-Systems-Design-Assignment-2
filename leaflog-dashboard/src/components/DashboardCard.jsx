@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function DashboardCard({data})
+export default function DashboardCard({data, wateringDay})
 {
     return (
         <div className="dashboard-card">
@@ -16,8 +16,8 @@ export default function DashboardCard({data})
             <label for="editingImage" className="editAndWater">Edit Plant</label>
             <br/>
             <p id="waterProgressText">Water Progress<br/>
-            <progress max="100" value="88"/><br/>
-            <span id="waterSoonText">Needs water soon: 1 day</span></p>
+            <progress max="100" value="30"/><br/>
+            <span id="waterSoonText">Needs water soon: {wateringDay} {wateringDay == "1" ? "day" : "days"}</span></p>
         </div>
     );
 }
