@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import DashboardCard from './components/DashboardCard';
+import Sidebar from './components/Sidebar';
 
 function App() {
   const plants = 
@@ -20,7 +21,11 @@ function App() {
 
   return (
     <div className="App">
-      <div className="DashboardRows">
+      <Sidebar/>
+      <div>
+        <h1>Dashboard</h1>
+        <input id="searchBar" placeholder='Search'></input>
+        <div className="DashboardRows">
         <div className="DashboardColumn">
           <DashboardCard data={plants[0]}/>
           <DashboardCard data={plants[0]}/>
@@ -34,6 +39,7 @@ function App() {
           <DashboardCard data={plants[0]}/>
         </div>
       </div>
+    </div>
     </div>
   );
 }
