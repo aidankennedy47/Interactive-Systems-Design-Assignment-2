@@ -131,11 +131,13 @@ const waterPlant = (plantID) =>
 const searchPlants = (plantNamePartial) =>
 {
   // Filters the plants to only those that include the plantNamePartial, not case sensitive
-  const newTempPlants = plants.filter((plant) => plant.name.toUpperCase().includes(plantNamePartial.toUpperCase()));
-
+  let newTempPlants = [];
+  if(plantNamePartial.length > 0)
+  {
+    newTempPlants = plants.filter((plant) => plant.name.toUpperCase().includes(plantNamePartial.toUpperCase()));
+  }
   setSearchBarValue(plantNamePartial);
   setTempPlants(newTempPlants);
-
   // console.log(tempPlants);
 }
 
