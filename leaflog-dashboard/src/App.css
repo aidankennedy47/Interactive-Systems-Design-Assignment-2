@@ -8,13 +8,14 @@ html {
 }
 .Dashboard
 {
+  width:80vw;
   display:flex;
   gap: 1vh 5vw;
   flex-flow: wrap;
 }
 #searchBar
 {
-  width:85%;
+  width:94.5%;
   margin-bottom:1vh;
   height:4vh;
   text-align: center;
@@ -97,7 +98,7 @@ progress
 /* SIDEBAR CSS */
 .sidebar
 {
-  width:25vw;
+  width:15vw;
   background-color: #82A37B;
   border-right-color: #F2F4F8;
   border-right-width:0.1vw;

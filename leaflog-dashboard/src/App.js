@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import DashboardCard from './components/DashboardCard';
 import Sidebar from './components/Sidebar';
 
@@ -81,6 +81,10 @@ function App() {
   }
 ]);
 
+
+const [tempPlants, setTempPlants] = React.useState([]);
+const [plantNamePartial, setPlantNamePartial] = React.useState("");
+
 const waterPlant = (plantID) =>
 {
   const newPlants = plants.map((p, i) =>
@@ -102,24 +106,29 @@ const waterPlant = (plantID) =>
   newPlants.sort((a, b) => a.daystillwater - b.daystillwater);
   
   setPlants(newPlants);
-  // sortPlants();
 
-  console.log(plants[plantID]);
+  // console.log(plants[plantID]);
 }
+
+useEffect(() =>
+{
+  const newTempPlants = plants.filter((plant) => plant.name.toUpperCase().includes(plantNamePartial.toUpperCase()));
+
+  setTempPlants(newTempPlants);
+
+  // console.log(tempPlants);
+}, [plantNamePartial])
 
   return (
     <div className="App">
       <Sidebar/>
       <div>
         <h1>Dashboard</h1>
-        <input id="searchBar" placeholder='Search'></input>
+        <input id="searchBar" placeholder='Search' onChange={(bar) => setPlantNamePartial(bar.target.value)}></input>
         <div className="Dashboard">
-          <DashboardCard data={plants[0]} waterFunction={() => waterPlant(0)}/>
-          <DashboardCard data={plants[1]} waterFunction={() => waterPlant(1)}/>
-          <DashboardCard data={plants[2]} waterFunction={() => waterPlant(2)}/>
-          <DashboardCard data={plants[3]} waterFunction={() => waterPlant(3)}/>
-          <DashboardCard data={plants[4]} waterFunction={() => waterPlant(4)}/>
-          <DashboardCard data={plants[5]} waterFunction={() => waterPlant(5)}/>
+          {tempPlants.length > 0 ? tempPlants.map((p, i) => (<DashboardCard data={tempPlants[i]} waterFunction={() => waterPlant(i)}/>)) : 
+          plantNamePartial.length > 0 ? <h1>No plants found!</h1>:
+          plants.map((p, i) => (<DashboardCard data={plants[i]} waterFunction={() => waterPlant(i)}/>))}
       </div>
     </div>
     </div>
