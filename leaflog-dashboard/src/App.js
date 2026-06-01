@@ -3,6 +3,7 @@ import './App.css';
 import React, { useEffect } from 'react';
 import DashboardCard from './components/DashboardCard';
 import Sidebar from './components/Sidebar';
+import ConfirmationPopup from './components/ConfirmationPopup';
 
 function App() {
   const [plants, setPlants] = React.useState( 
@@ -80,10 +81,11 @@ function App() {
       "dateadded" : "2026-05-6"
   }
 ]);
-
-
 const [tempPlants, setTempPlants] = React.useState([]);
-const [plantNamePartial, setPlantNamePartial] = React.useState("");
+const [successfulWater, setSuccessfulWater] = React.useState(false);
+const [searchBarValue, setSearchBarValue] = React.useState("");
+const [timer, setTimer] = React.useState(0);
+
 
 const waterPlant = (plantID) =>
 {
@@ -107,30 +109,36 @@ const waterPlant = (plantID) =>
   
   setPlants(newPlants);
 
+  setSuccessfulWater(true);
+  clearTimeout(timer);
+  setTimer(setTimeout(() => {setSuccessfulWater(false);}, 3000));
+
   // console.log(plants[plantID]);
 }
 
-useEffect(() =>
+const searchPlants = (plantNamePartial) =>
 {
   const newTempPlants = plants.filter((plant) => plant.name.toUpperCase().includes(plantNamePartial.toUpperCase()));
 
+  setSearchBarValue(plantNamePartial);
   setTempPlants(newTempPlants);
 
   // console.log(tempPlants);
-}, [plantNamePartial])
+}
 
   return (
     <div className="App">
       <Sidebar/>
       <div>
         <h1>Dashboard</h1>
-        <input id="searchBar" placeholder='Search' onChange={(bar) => setPlantNamePartial(bar.target.value)}></input>
+        <input id="searchBar" placeholder='Search' onChange={(bar) => {searchPlants(bar.target.value);}}></input>
         <div className="Dashboard">
           {tempPlants.length > 0 ? tempPlants.map((p, i) => (<DashboardCard data={tempPlants[i]} waterFunction={() => waterPlant(i)}/>)) : 
-          plantNamePartial.length > 0 ? <h1>No plants found!</h1>:
+          searchBarValue.length > 0 ? <h1>No plants found!</h1>:
           plants.map((p, i) => (<DashboardCard data={plants[i]} waterFunction={() => waterPlant(i)}/>))}
       </div>
     </div>
+    {successfulWater && <ConfirmationPopup />}
     </div>
   );
 }

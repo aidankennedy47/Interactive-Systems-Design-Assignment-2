@@ -2,8 +2,6 @@ import React from "react";
 
 export default function DashboardCard({data, waterFunction})
 {
-    
-
     return (
         <div className="dashboard-card">
             <div className="top-half">
