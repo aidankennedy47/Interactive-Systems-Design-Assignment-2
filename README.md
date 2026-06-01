@@ -1,5 +1,5 @@
-### Leaflog-Dashboard instructions
-# To run the webpage
+# Leaflog-Dashboard instructions
+### To run the webpage
 In order to run the web page, you must install the NodeJS from https://nodejs.org/.
 Install the LTS package and verify installation using "node -v" and "npm -v".
 
