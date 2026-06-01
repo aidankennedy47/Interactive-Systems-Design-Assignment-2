@@ -81,14 +81,23 @@ function App() {
       "dateadded" : "2026-05-6"
   }
 ]);
+
+// Used to hold plants when filtering by search
 const [tempPlants, setTempPlants] = React.useState([]);
-const [successfulWater, setSuccessfulWater] = React.useState(false);
+
+// Holds the search query to show "no plants detected" if no plants fit the search query
 const [searchBarValue, setSearchBarValue] = React.useState("");
+
+// Used to denote when to show watering confirmation popup
+const [successfulWater, setSuccessfulWater] = React.useState(false);
+
+// Used to be able to stop watering confirmation from disappearing when it should be appearing (two overlapping water requests)
 const [timer, setTimer] = React.useState(0);
 
 
 const waterPlant = (plantID) =>
 {
+  // Resets each plant into a new array to set to the plants array whilst updating the watered plant's data
   const newPlants = plants.map((p, i) =>
   {
     if(i === plantID)
@@ -111,6 +120,7 @@ const waterPlant = (plantID) =>
   
   setPlants(newPlants);
 
+  // Causes the Confirmation Popup to appear for 3 seconds
   setSuccessfulWater(true);
   clearTimeout(timer);
   setTimer(setTimeout(() => {setSuccessfulWater(false);}, 3000));
@@ -120,6 +130,7 @@ const waterPlant = (plantID) =>
 
 const searchPlants = (plantNamePartial) =>
 {
+  // Filters the plants to only those that include the plantNamePartial, not case sensitive
   const newTempPlants = plants.filter((plant) => plant.name.toUpperCase().includes(plantNamePartial.toUpperCase()));
 
   setSearchBarValue(plantNamePartial);
