@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import React, { useEffect } from 'react';
+import React, { use, useEffect } from 'react';
 import DashboardCard from './components/DashboardCard';
 import Sidebar from './components/Sidebar';
 import ConfirmationPopup from './components/ConfirmationPopup';
@@ -86,7 +86,7 @@ function App() {
 const [tempPlants, setTempPlants] = React.useState([]);
 
 // Holds the search query to show "no plants detected" if no plants fit the search query
-const [searchBarValue, setSearchBarValue] = React.useState("");
+const [plantNamePartial, setPlantNamePartial] = React.useState("");
 
 // Used to denote when to show watering confirmation popup
 const [successfulWater, setSuccessfulWater] = React.useState(false);
@@ -128,28 +128,27 @@ const waterPlant = (plantID) =>
   // console.log(plants[plantID]);
 }
 
-const searchPlants = (plantNamePartial) =>
-{
+useEffect(() => {
   // Filters the plants to only those that include the plantNamePartial, not case sensitive
   let newTempPlants = [];
   if(plantNamePartial.length > 0)
   {
     newTempPlants = plants.filter((plant) => plant.name.toUpperCase().includes(plantNamePartial.toUpperCase()));
   }
-  setSearchBarValue(plantNamePartial);
+
   setTempPlants(newTempPlants);
   // console.log(tempPlants);
-}
+}, [plantNamePartial])
 
   return (
     <div className="App">
       <Sidebar/>
       <div>
         <h1>Dashboard</h1>
-        <input id="searchBar" placeholder='Search' onChange={(bar) => {searchPlants(bar.target.value);}}></input>
+        <input id="searchBar" placeholder='Search' onChange={(bar) => {setPlantNamePartial(bar.target.value);}}></input>
         <div className="Dashboard">
-          {tempPlants.length > 0 ? tempPlants.map((p, i) => (<DashboardCard data={tempPlants[i]} waterFunction={() => waterPlant(i)}/>)) : 
-          searchBarValue.length > 0 ? <h1>No plants found!</h1>:
+          {tempPlants.length > 0 ? plants.map((p, i) => (tempPlants.includes(p) && <DashboardCard data={plants[i]} waterFunction={() => waterPlant(i)}/>)) : 
+          plantNamePartial.length > 0 ? <h1>No plants found!</h1>:
           plants.map((p, i) => (<DashboardCard data={plants[i]} waterFunction={() => waterPlant(i)}/>))}
       </div>
     </div>
