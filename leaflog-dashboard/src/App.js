@@ -33,23 +33,23 @@ function App() {
       "dateadded" : "2026-05-6"
   },
   {
-      "name" : "Roser",
-      "description" : "A rose is either a woody perennial flowering plant of the genus Rosa in the family Rosaceae or the flower it bears.",
-      "imagelink" : "https://www.thetutuguru.com.au/wp-content/uploads/2012/08/Pink-Roses.jpg",
-      "wateringfrequency" : "Weekly",
-      "commonmistake" : "Overwatering",
-      "plantlocation" : "Front Yard",
+      "name" : "Tulip",
+      "description" : "Tulips are spring-blooming perennial herbaceous bulbiferous geophytes in the Tulipa genus. Their flowers are usually large, showy, and brightly coloured, generally red, orange, pink, yellow, or white.",
+      "imagelink" : "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/%D7%A6%D7%91%D7%A2%D7%95%D7%A0%D7%99%D7%9D.JPG/250px-%D7%A6%D7%91%D7%A2%D7%95%D7%A0%D7%99%D7%9D.JPG",
+      "wateringfrequency" : "Fortnightly",
+      "commonmistake" : "Doing Bad",
+      "plantlocation" : "Pot near Window",
       "lastwatered" : "2026-05-29",
       "daystillwater" : 3,
       "timeswatered" : 4,
       "dateadded" : "2026-05-6"
   },
   {
-      "name" : "Roses",
-      "description" : "A rose is either a woody perennial flowering plant of the genus Rosa in the family Rosaceae or the flower it bears.",
-      "imagelink" : "https://www.thetutuguru.com.au/wp-content/uploads/2012/08/Pink-Roses.jpg",
+      "name" : "Sunflower",
+      "description" : "The common sunflower (Helianthus annuus) is a large annual forb in the daisy family Asteraceae. The domesticated form of common sunflower is harvested for its edible seeds, which come in two types: oil and confectionary seeds.",
+      "imagelink" : "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Sunflower_sky_backdrop.jpg/250px-Sunflower_sky_backdrop.jpg",
       "wateringfrequency" : "Weekly",
-      "commonmistake" : "Overwatering",
+      "commonmistake" : "Underwatering",
       "plantlocation" : "Front Yard",
       "lastwatered" : "2026-05-29",
       "daystillwater" : 4,
@@ -57,24 +57,24 @@ function App() {
       "dateadded" : "2026-05-6"
   },
   {
-      "name" : "Rosed",
-      "description" : "A rose is either a woody perennial flowering plant of the genus Rosa in the family Rosaceae or the flower it bears.",
-      "imagelink" : "https://www.thetutuguru.com.au/wp-content/uploads/2012/08/Pink-Roses.jpg",
-      "wateringfrequency" : "Weekly",
-      "commonmistake" : "Overwatering",
-      "plantlocation" : "Front Yard",
+      "name" : "Allium",
+      "description" : "Allium is a large genus of monocotyledonous flowering plants with 1112 accepted species, making Allium the largest genus in the family Amaryllidaceae and among the largest plant genera in the world.",
+      "imagelink" : "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Ursa_ajlo_1.jpg/250px-Ursa_ajlo_1.jpg",
+      "wateringfrequency" : "Monthly",
+      "commonmistake" : "Cucumbering",
+      "plantlocation" : "Back Garden",
       "lastwatered" : "2026-05-29",
       "daystillwater" : 5,
       "timeswatered" : 4,
       "dateadded" : "2026-05-6"
   },
   {
-      "name" : "Rosem",
-      "description" : "A rose is either a woody perennial flowering plant of the genus Rosa in the family Rosaceae or the flower it bears.",
-      "imagelink" : "https://www.thetutuguru.com.au/wp-content/uploads/2012/08/Pink-Roses.jpg",
+      "name" : "Violet",
+      "description" : "Viola, commonly known as the violets, is a genus of flowering plants in the family Violaceae. It is the largest genus in the family, containing over 680 species. Most species are found in the temperate Northern Hemisphere; however, some are also found in widely divergent areas such as Hawaii, Australasia, and the Andes.",
+      "imagelink" : "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Viola_reichenbachiana_LC0128.jpg/250px-Viola_reichenbachiana_LC0128.jpg",
       "wateringfrequency" : "Weekly",
-      "commonmistake" : "Overwatering",
-      "plantlocation" : "Front Yard",
+      "commonmistake" : "Leaving Alone",
+      "plantlocation" : "Bedside Table",
       "lastwatered" : "2026-05-29",
       "daystillwater" : 6,
       "timeswatered" : 4,
@@ -97,7 +97,9 @@ const waterPlant = (plantID) =>
       newPlant.timeswatered++;
       let currentDate = new Date(Date.now());
       newPlant.lastwatered = currentDate.getFullYear() + "-" + (currentDate.getMonth() + 1) + "-" + currentDate.getDate();
-      newPlant.wateringfrequency === "Weekly" ? newPlant.daystillwater = 7 : newPlant.daystillwater = 30;
+      newPlant.wateringfrequency === "Weekly" ?       newPlant.daystillwater = 7 :
+      newPlant.wateringfrequency === "Fortnightly" ?  newPlant.daystillwater = 14:
+                                                      newPlant.daystillwater = 30;
       return newPlant;
     }
     else
