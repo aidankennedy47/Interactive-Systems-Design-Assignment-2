@@ -16,7 +16,7 @@ function App() {
       "commonmistake" : "Overwatering",
       "plantlocation" : "Front Yard",
       "lastwatered" : "2026-05-29",
-      "daystillwater" : 1,
+      "daystillwater" : -1,
       "timeswatered" : 4,
       "dateadded" : "2026-05-6"
   },
@@ -28,7 +28,7 @@ function App() {
       "commonmistake" : "Too Dry",
       "plantlocation" : "Pond",
       "lastwatered" : "2026-05-29",
-      "daystillwater" : 2,
+      "daystillwater" : 0,
       "timeswatered" : 4,
       "dateadded" : "2026-05-6"
   },

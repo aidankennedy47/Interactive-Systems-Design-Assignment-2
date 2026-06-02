@@ -94,7 +94,24 @@ progress
   margin-left:1%;
   object-fit: cover;
 }
-
+progress {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+}
+#waterLater::-webkit-progress-value
+{
+  background-color:#97FC97;
+}
+#waterOverdue::-webkit-progress-value
+{
+  background-color:#C30505;
+}
+#waterToday::-webkit-progress-value
+{
+  background-color:#FEBE03;
+}
 
 /* SIDEBAR CSS */
 .sidebar

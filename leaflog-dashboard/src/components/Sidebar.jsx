@@ -11,7 +11,6 @@ export default function Sidebar()
             <label for="logoImage">LeafLog</label>
             </div>
             <div id="accountDisplay">
-                <a href="#"><img src="profilePicture.png" id="pfpImage"/></a>
                 <a href="#"><img src="notification.png" id="notifImage"/></a>
             </div>
             </div>

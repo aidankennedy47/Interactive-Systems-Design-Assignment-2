@@ -16,8 +16,10 @@ export default function DashboardCard({data, waterFunction})
             <label for="editingImage" className="editAndWater"><a href="#">Edit Plant</a></label>
             <br/>
             <p id="waterProgressText">Water Progress<br/>
-            <progress max="100" value="30"/><br/>
-            <span id="waterSoonText">Needs water soon: {data.daystillwater} {data.daystillwater == "1" ? "day" : "days"}</span></p>
+            <progress id={data.daystillwater > 0 ? "waterLater" : data.daystillwater < 0 ? "waterOverdue" : "waterToday"} max={data.wateringfrequency === "Monthly" ? 30 : data.wateringfrequency === "Weekly" ? 7 : 14} value={data.wateringfrequency === "Monthly" ? 30 - data.daystillwater : data.wateringfrequency === "Weekly" ? 7 - data.daystillwater : 14 - data.daystillwater}/><br/>
+            {data.daystillwater >= 0 ?  <span id="waterSoonText">Needs water soon: {data.daystillwater} {data.daystillwater == "1" ? "day" : "days"}</span> :
+                                        <span id="waterSoonText">Needed water: {-data.daystillwater} {data.daystillwater == "1" ? "day" : "days"} ago</span>} 
+            </p>
         </div>
     );
 }
